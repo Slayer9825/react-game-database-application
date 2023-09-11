@@ -49,7 +49,6 @@ const MainContainer = () => {
     setCurrentListIndex(0)
     setCurrentBackgroundImage(gameDetails.gameBackgroundImage[currentListIndex])
     //console.log(currentBackgroundImage)
-
     
     largeTextLine = `${gameDetails.gameName[currentListIndex]}`
       if(largeTextLine.length >= 30) {
