@@ -1,17 +1,13 @@
-import { colors } from '@mui/material'
-import React from 'react'
-import ReactDOM from "react-dom"
 import { useState, useEffect } from 'react'
 import { MuiGetDetailsButton, MuiFilterDetailsButton } from './MuiGetDetailsButton'
 import '../styles/styles.css'
-import { getGamesList, setYearRange } from '../script/fetchGamesScript.js';
-import { newArrayValueName } from '../script/fetchGamesScript'
+import { getGamesList, setYearRange, newArrayValueName, setCurrentGameId, currentSpecificDetail, fetchSpecificGameDetails } from '../script/fetchGamesScript.js';
 import ListComponent from './ListComponent'
 import DetailWindowComponent from './DetailWindowComponent'
 import LabeledValuesSlider from './StyledSlider'
-
-
-
+import TabDetailList from './TabDetailList'
+export let selectedGameId = 0
+let gameDescription: any
 
 const MainContainer = () => {
 
@@ -33,22 +29,21 @@ const MainContainer = () => {
   const [currentListIndex, setCurrentListIndex] = useState(0)
   const [currentBackgroundImage, setCurrentBackgroundImage] = useState('')
   const [longTextLine, setLongTextLine] = useState('1 / span 2')
-  const [headerContainerSize, setHeaderContainerSize] = useState('')
+  const [currentSpecificGame, setCurrentSpecificGame] = useState('')
 
   async function fetchGamesDetails () {
     await getGamesList()
     retrieveGamesDetails()
+    getListIndex(0)
     
-
   }
-  const retrieveGamesDetails = () => { 
+  const retrieveGamesDetails = async () => { 
     
     setGameDetails((gameDetails => ({
       ...newArrayValueName
     }))) 
-    setCurrentListIndex(0)
-    setCurrentBackgroundImage(gameDetails.gameBackgroundImage[currentListIndex])
-    //console.log(currentBackgroundImage)
+
+    console.log(currentBackgroundImage)
     
     largeTextLine = `${gameDetails.gameName[currentListIndex]}`
       if(largeTextLine.length >= 30) {
@@ -62,23 +57,35 @@ const MainContainer = () => {
     
   } 
 
-  function getListIndex(index: any) {
 
+  async function getListIndex(index: any) {
     let clickedListIndex = index.index
+    if(index) {
+      clickedListIndex = index.index
+    } else {
+      clickedListIndex = 0
+    }
+    
     setCurrentListIndex(clickedListIndex)
     setCurrentBackgroundImage(gameDetails.gameBackgroundImage[currentListIndex])
-    //console.log(currentBackgroundImage)
+    setCurrentGameId(clickedListIndex)
 
-    
+    selectedGameId = newArrayValueName.gameId[clickedListIndex]
+    await fetchSpecificGameDetails(selectedGameId)
+    setGameDetailsFromFetch(currentSpecificDetail)
+
     largeTextLine = `${gameDetails.gameName[clickedListIndex]}`
-      if(largeTextLine.length >= 30) {
-
+      if(largeTextLine.length >= 31) {
         setLongTextLine('1 / span 3')
-        //console.log(largeTextLine.length)
-
       } else {
         setLongTextLine('1 / span 2')
       }
+  }
+
+  function setGameDetailsFromFetch(value: any) {
+    gameDescription = value
+    setCurrentSpecificGame(gameDescription)
+    //console.log(gameDescription)
   }
 
   function updateFetchRequest(e: any) {
@@ -86,7 +93,6 @@ const MainContainer = () => {
     setYearRange(newYear)
   }
 
-  let initialized = false 
 
     useEffect(() => { }) 
     //Add some code if needed.
@@ -96,7 +102,6 @@ const MainContainer = () => {
     <div id='gridWrapper' 
       style={{ 
         animation: "fadeIn 1s",
-        //backgroundImage: `url(${gameDetails.gameBackgroundImage[`${currentListIndex}`]})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat"
       }}>
@@ -131,6 +136,10 @@ const MainContainer = () => {
         gridRowValue={'1 / span 2'}
         gridColumnValue={'18 / span 3'} 
         setListIndex={currentListIndex}
+      />
+
+      <TabDetailList 
+
       />
 
       <LabeledValuesSlider 

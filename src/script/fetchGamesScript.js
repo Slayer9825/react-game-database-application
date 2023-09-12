@@ -1,16 +1,8 @@
-import { MainContainer} from '../components/MainContainer.tsx'
-import React, { useEffect, useState, props } from 'react';
-import ListComponent from '../components/ListComponent.tsx'
+import MainContainer from "../components/MainContainer"
+import { selectedGameId } from '../components/MainContainer'
 
 
-const apiKey = 'key=26a8374f95c941478c89c39b3bc1193e'
-const endpointUrl = 'https://api.rawg.io/api'
-const queryParameters = '/games?'
-export let yearRange = "2019"
-let additionalParams = `&dates=${yearRange}-01-01,${yearRange}-12-31`
-let dataFetched = 0;
 export let backgroundImageLink
-let previousEndpoint = ``
 export let newArrayValueName = {
     gameId: [],
     gameName: [],
@@ -23,17 +15,79 @@ export let newArrayValueName = {
     gameBackgroundCurrentImage: "",
 }
 
+let specificGameId
+const apiKey = 'key=26a8374f95c941478c89c39b3bc1193e'
+const endpointUrl = 'https://api.rawg.io/api'
+const gameListQuery = '/games?'
+export let yearRange = "2020"
+let specificGameEndpoint = '0'
+let additionalParams = `&dates=${yearRange}-01-01,${yearRange}-12-31`
+let previousEndpoint = ``
+export let currentSpecificDetail = ''
+
+
 export function setYearRange(year) {
     yearRange = year
     additionalParams = `&dates=${yearRange}-01-01,${yearRange}-12-31`
+    console.log(specificGameId)
+}
+
+export function setCurrentGameId(index) {
+    specificGameId = newArrayValueName.gameId[index]
+    specificGameEndpoint = `/games/`
+    
+}
+
+export const fetchSpecificGameDetails = async (id) => {
+    let endpoint
+    await getGamesList()
+    if(id) {
+        endpoint = `${endpointUrl}${specificGameEndpoint}${id}?${apiKey}`;
+    } else {
+        setCurrentGameId(0)
+        endpoint = `${endpointUrl}${specificGameEndpoint}${specificGameId}?${apiKey}`;
+    }
+    specificGameId = newArrayValueName.gameId[0]
+    
+    console.log(id)
+    console.log(specificGameEndpoint)
+    console.log(specificGameId)
+
+
+    if (previousEndpoint !== endpoint) {
+        
+        try {
+            const response = await fetch(`${endpoint}`, {  
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json',
+                }
+            });
+                if(response.ok) {
+
+                    // Clearing array before pushing new values.
+                    currentSpecificDetail = ''
+                    const jsonResponse = await response.json();
+                    currentSpecificDetail = jsonResponse.description_raw
+                    previousEndpoint = endpoint
+                    
+                    console.log(jsonResponse)
+                    console.log(typeof(currentSpecificDetail.description_raw))
+                //console.log(jsonResponse.results)
+            }
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }
 }
 
 
 export const getGamesList = async () => {
-    const endpoint = `${endpointUrl}${queryParameters}${apiKey}${additionalParams}`;
 
+    const endpoint = `${endpointUrl}${gameListQuery}${apiKey}${additionalParams}`;
+    console.log(endpoint)
     if (previousEndpoint !== endpoint) {
-        
         try {
             const response = await fetch(`${endpoint}`, {  
                 method: 'GET',
@@ -69,36 +123,13 @@ export const getGamesList = async () => {
                         newArrayValueName.gameReleased.push(jsonResponse.results[i].released)   
 
                     }
-                //dataFetched=1
-                //console.log(newArrayValueName)
                 //console.log(jsonResponse.results)
-                /*
-                //console.log(gamesArray)
-                console.log(gamesArray.results[0])
-                //console.log(gamesArray.results[0].name)
-
-                
-                for (let i = 0; i < 20; i++) {
-
-                    gamesArrayNames.push(gamesArray.results[i].name)
-                    //console.log(gamesArrayNames[i])
-                    gamesArrayCurrentName = gamesArrayNames[i]
-
-                
-            }
-            console.log(gamesArrayNames)
-
-            backgroundImageLink = gamesArray.results[0].background_image
-            console.log(gamesArray.results[0].playtime)
-            console.log(`${backgroundImageLink}`)
-            console.log(backgroundImageLink)
-            document.body.style.backgroundImage = "url(`${backgroundImageLink}`)";
-            */
+                specificGameId = newArrayValueName.gameId[0]
+                console.log(endpoint)
             }
         
       } catch (error) {
         console.log(error);
       }
     }
-      return true
 }

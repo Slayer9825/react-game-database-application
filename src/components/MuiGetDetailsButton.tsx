@@ -10,6 +10,6 @@ export const MuiGetDetailsButton = (props:{onClick:()=>void}) => {
 }
 
 export const MuiFilterDetailsButton = (props:{onClick:()=>void}) => {
-  return <Button onClick={props.onClick} variant="contained" id="filterListButton" color='warning'>Something Else</Button>;
+  return <Button onClick={props.onClick} variant="contained" id="filterListButton">Button</Button>;
   
 }

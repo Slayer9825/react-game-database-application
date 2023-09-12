@@ -13,10 +13,10 @@ export default function DiscreteSlider(props: {updateFetchRequest: any}) {
   };
 
   return (
-    <Box sx={{ width: 350, gridColumnStart: 3, gridColumnEnd: 13, gridRowStart: 14, gridRowEnd: 14, backgroundColor: "rgb(200,200,200,0.6)", borderRadius: "50px", zIndex: "1", backdropFilter: "blur(20px)", boxShadow: "rgba(0, 0, 0, 0.5) 0px 8px 10px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 12px 8px, rgba(0, 0, 0, 0.09) 0px 16px 16px"}}>
+    <Box sx={{ width: 350, height: 40, gridColumnStart: 3, gridColumnEnd: 13, gridRowStart: 14, gridRowEnd: 15, backgroundColor: "rgb(200,200,200,0.6)", borderRadius: "50px", zIndex: "1", backdropFilter: "blur(20px)", boxShadow: "rgba(0, 0, 0, 0.5) 0px 8px 10px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 12px 8px, rgba(0, 0, 0, 0.09) 0px 16px 16px"}}>
       <StyledSlider
         aria-label="Temperature"
-        defaultValue={2019}
+        defaultValue={2020}
         getAriaValueText={valuetext}
         step={1}
         marks
