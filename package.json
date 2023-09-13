@@ -1,5 +1,6 @@
 {
   "name": "react-game-database-application",
+  "homepage": "https://slayer9825.github.io/react-game-database-application/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,8 +24,8 @@
     "react-swipeable-views": "^0.14.0",
     "react-window": "^1.8.9",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4",
-    "homepage": "https://slayer9825.github.io/react-game-database-application/"
+    "web-vitals": "^2.1.4"
+    
   },
   "scripts": {
     "predeploy": "npm run build",
