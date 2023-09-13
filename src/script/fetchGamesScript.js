@@ -13,7 +13,7 @@ export let newArrayValueName = {
 }
 
 let specificGameId
-const apiKey = 'key=26a8374f95c941478c89c39b3bc1193e'
+let apiKey = process.env.REACT_APP_API_KEY
 const endpointUrl = 'https://api.rawg.io/api'
 const gameListQuery = '/games?'
 export let yearRange = "2023"
@@ -82,8 +82,7 @@ export const fetchSpecificGameDetails = async (id) => {
 
 export const getGamesList = async () => {
 
-    const endpoint = `${endpointUrl}${gameListQuery}${apiKey}${additionalParams}`;
-    console.log(endpoint)
+    const endpoint = `${endpointUrl}${gameListQuery}${process.env.REACT_APP_API_KEY}${additionalParams}`;
     if (previousEndpoint !== endpoint) {
         try {
             const response = await fetch(`${endpoint}`, {  
@@ -122,7 +121,6 @@ export const getGamesList = async () => {
                     }
                 //console.log(jsonResponse.results)
                 specificGameId = newArrayValueName.gameId[0]
-                console.log(endpoint)
             }
         
       } catch (error) {
