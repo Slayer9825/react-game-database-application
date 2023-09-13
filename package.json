@@ -24,7 +24,7 @@
     "react-window": "^1.8.9",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
-    "homepage": "https://myusername.github.io/my-app"
+    "homepage": "https://slayer9825.github.io/react-game-database-application/"
   },
   "scripts": {
     "predeploy": "npm run build",
