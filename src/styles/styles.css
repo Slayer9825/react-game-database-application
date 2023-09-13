@@ -3,17 +3,22 @@
     display: grid;
     grid-template-columns: 300px repeat(20, 1fr);
     grid-template-rows: repeat(17, 1fr);
-    width: 40em;
-    min-width: 40em;
+    width: 39em;
+    min-width: 39em;
     min-height: 20em;
     max-height: 25em;
     color: black;
-    border-radius: 25px;
+    border-radius: 30px;
+    padding-bottom: -1px;
+    padding-top: 1px;
+    background-color: rgba(58, 45, 45, 0);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     
 }
 
 #gridBackground {
+
+    width: 40em;
     grid-area: 1 / 1 / 18 / 22;
     animation: "fadeIn 2s";
     contain: content;
@@ -55,7 +60,7 @@ body {
     grid-row: 16;
     height: 3em;
     margin: auto;
-}
+} 
 
 #filterListButton {
     grid-column: 8 / span 3;
@@ -64,3 +69,11 @@ body {
     margin: auto;
 }
 
+.tabListScrollBar::-webkit-scrollbar {
+}
+
+/*
+
+gridColumnStart: 3, gridRowStart: 6, gridColumnEnd: 17, position: 'fixed' ,
+className="tabListScrollBar"
+*/

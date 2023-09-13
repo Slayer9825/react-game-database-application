@@ -6,9 +6,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { currentSpecificDetail } from '../script/fetchGamesScript';
-
+import '../styles/styles.css'
 
 
 interface TabPanelProps {
@@ -59,39 +58,49 @@ export default function FullWidthTabs() {
   };
 
   return (
-    <Box  sx={{overflow: "auto", bgcolor: 'background.paper', width: "100%", gridRow: "4 / 13", gridColumn: "3 / 21", zIndex: 1, boxShadow: "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px", backdropFilter: "blur(7px)", borderRadius: "20px 20px 0px 0px" }}>
-      <AppBar   position="static" sx={{borderRadius: "20px 20px 0px 0px"}}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-          textColor="inherit"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+
+  <>
+  <AppBar sx={{position: "initial", width: "100%", top: "0px", borderRadius: "20px 20px 0px 0px", gridRow: 4, gridColumnStart: 3, gridColumnEnd: 21}}>
+    <Tabs sx={{
+
+    }}
+    value={value}
+    onChange={handleChange}
+    indicatorColor="secondary"
+    textColor="inherit"
+    variant="fullWidth"
+    aria-label="full width tabs example"
+    >
+    <Tab label="Description" {...a11yProps(0)} />
+    <Tab label="Item Two" {...a11yProps(1)} />
+    <Tab label="Credits" {...a11yProps(2)} />
+    </Tabs>
+  </AppBar>
+      <Box sx={{ overflow: "auto", bgcolor: 'background.paper', width: "100%", gridRow: "5 / 13", gridColumn: "3 / 21", zIndex: 1, boxShadow: "rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px", backdropFilter: "blur(7px)"}}>
+        
+        
+        <SwipeableViews
+  
+          style={{scrollbarGutter: "stable", position: 'fixed', top: "0px",  }}
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+          
         >
-          <Tab label="Description" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
-      </AppBar>
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel currentSpecificGame={currentSpecificDetail} value={value} index={0} dir={theme.direction}>
-          {currentSpecificDetail}
-        
-        
-        
-        </TabPanel>
-        <TabPanel currentSpecificGame={currentSpecificDetail} value={value} index={1} dir={theme.direction}>
-          Item Two
-        </TabPanel>
-        <TabPanel currentSpecificGame={currentSpecificDetail} value={value} index={2} dir={theme.direction}>
-          Item Three
-        </TabPanel>
-      </SwipeableViews>
-    </Box>
+          <TabPanel currentSpecificGame={currentSpecificDetail} value={value} index={0} dir={theme.direction}>
+            {currentSpecificDetail}
+          
+          
+          
+          </TabPanel>
+          <TabPanel currentSpecificGame={currentSpecificDetail} value={value} index={1} dir={theme.direction}>
+            Item Two
+          </TabPanel>
+          <TabPanel currentSpecificGame={currentSpecificDetail} value={value} index={2} dir={theme.direction}>
+            Item Three
+          </TabPanel>
+        </SwipeableViews>
+      </Box>
+    </>
   );
 }

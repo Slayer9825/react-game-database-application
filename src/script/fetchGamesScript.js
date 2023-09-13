@@ -1,6 +1,3 @@
-import MainContainer from "../components/MainContainer"
-import { selectedGameId } from '../components/MainContainer'
-
 
 export let backgroundImageLink
 export let newArrayValueName = {
@@ -19,7 +16,7 @@ let specificGameId
 const apiKey = 'key=26a8374f95c941478c89c39b3bc1193e'
 const endpointUrl = 'https://api.rawg.io/api'
 const gameListQuery = '/games?'
-export let yearRange = "2020"
+export let yearRange = "2023"
 let specificGameEndpoint = '0'
 let additionalParams = `&dates=${yearRange}-01-01,${yearRange}-12-31`
 let previousEndpoint = ``

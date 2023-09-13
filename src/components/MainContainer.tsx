@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { MuiGetDetailsButton, MuiFilterDetailsButton } from './MuiGetDetailsButton'
+import AppBar from '@mui/material/AppBar';
 import '../styles/styles.css'
 import { getGamesList, setYearRange, newArrayValueName, setCurrentGameId, currentSpecificDetail, fetchSpecificGameDetails } from '../script/fetchGamesScript.js';
 import ListComponent from './ListComponent'
@@ -71,6 +72,12 @@ const MainContainer = () => {
     setCurrentGameId(clickedListIndex)
 
     selectedGameId = newArrayValueName.gameId[clickedListIndex]
+    largeTextLine = `${gameDetails.gameName[clickedListIndex]}`
+    if(largeTextLine.length >= 31) {
+      setLongTextLine('1 / span 3')
+    } else {
+      setLongTextLine('1 / span 2')
+    }
     await fetchSpecificGameDetails(selectedGameId)
     setGameDetailsFromFetch(currentSpecificDetail)
 
@@ -111,9 +118,9 @@ const MainContainer = () => {
           backgroundImage: `url(${gameDetails.gameBackgroundImage[`${currentListIndex}`]})`
       }}>
         
-        
-      </div> 
-       
+
+    </div> 
+
       <DetailWindowComponent
         detailHeader='Title:'
         textDescription={gameDetails.gameName}
@@ -138,6 +145,7 @@ const MainContainer = () => {
         setListIndex={currentListIndex}
       />
 
+      
       <TabDetailList 
 
       />
@@ -145,7 +153,7 @@ const MainContainer = () => {
       <LabeledValuesSlider 
         updateFetchRequest={updateFetchRequest}
       />
-
+ 
       <ListComponent 
         gameName={gameDetails.gameName}
         gameId={gameDetails.gameId}
@@ -153,7 +161,7 @@ const MainContainer = () => {
         /> 
       
       <MuiGetDetailsButton 
-        onClick={() => fetchGamesDetails()}/>
+        onClick={() => fetchGamesDetails()}/> 
       <MuiFilterDetailsButton 
         onClick={() => console.log({gameDetails})} />
        
