@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-game-database-application/static/css/main.34af4a6d.css",
-    "main.js": "/react-game-database-application/static/js/main.4e90a512.js",
+    "main.js": "/react-game-database-application/static/js/main.a4f0bb6b.js",
     "static/js/787.64252c12.chunk.js": "/react-game-database-application/static/js/787.64252c12.chunk.js",
     "static/media/roboto-latin-500-normal.woff2": "/react-game-database-application/static/media/roboto-latin-500-normal.f25d774ecfe0996f8eb5.woff2",
     "static/media/roboto-latin-700-normal.woff2": "/react-game-database-application/static/media/roboto-latin-700-normal.227c93190fe7f82de3f8.woff2",
@@ -61,11 +61,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/react-game-database-application/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/react-game-database-application/index.html",
     "main.34af4a6d.css.map": "/react-game-database-application/static/css/main.34af4a6d.css.map",
-    "main.4e90a512.js.map": "/react-game-database-application/static/js/main.4e90a512.js.map",
+    "main.a4f0bb6b.js.map": "/react-game-database-application/static/js/main.a4f0bb6b.js.map",
     "787.64252c12.chunk.js.map": "/react-game-database-application/static/js/787.64252c12.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.34af4a6d.css",
-    "static/js/main.4e90a512.js"
+    "static/js/main.a4f0bb6b.js"
   ]
 }
