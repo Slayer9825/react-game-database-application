@@ -5,11 +5,11 @@ import Button from '@mui/material/Button';
 import '../styles/styles.css'
 
 export const MuiGetDetailsButton = (props:{onClick:()=>void}) => {
-
-  return <Button onClick={props.onClick} variant="contained" id="loadListButton">Load List</Button>;
+  return <Button onClick={props.onClick} variant="contained" id="loadListButton">Refresh</Button>;
 }
 
-export const MuiFilterDetailsButton = (props:{onClick:()=>void}) => {
+
+/* export const MuiFilterDetailsButton = (props:{onClick:()=>void}) => {
   return <Button onClick={props.onClick} variant="contained" id="filterListButton">Button</Button>;
   
-}
+} */
